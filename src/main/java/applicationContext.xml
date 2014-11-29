@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd ">
 	
-	<bean id="helloWorld" class="ouc.jeep.base.HelloWorld"></bean>	
+	<bean id="helloWorld" class="ouc.jeep.base.HelloWorld" scope="prototype"></bean>	
  
 
 </beans>
