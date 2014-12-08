@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd  ">
+	
+   <!-- this is the object that will be proxied by Spring's AOP infrastructure -->
+    <bean id="personDao" class="ouc.jeep.aop.PersonDaoImpl"/>
+
+    <!-- this is the actual advice itself -->
+    <bean id="transaction" class="ouc.jeep.aop.Transaction"/>
+
+    <aop:config>
+        <aop:aspect ref="transaction">
+            <aop:pointcut id="perform" expression="execution(* ouc.jeep.aop.PersonDaoImpl.*(..))"/>
+            <aop:before pointcut-ref="perform"  method="beginTransaction"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
